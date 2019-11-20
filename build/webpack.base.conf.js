@@ -45,9 +45,13 @@ const generatorHtmlWebpackPlugins = () => {
             templatePath = publicTemplatePath;
         }
 
+        let distSrc = !devMode?`${item}/`:''
+
+        distSrc += `${item}`
+
         arr.push(new HtmlWebpackPlugin({
             template: templatePath,
-            filename: `${item}${devMode?'':'.html'}`,
+            filename: `${distSrc}${devMode?'':'.html'}`,
             chunks: ['manifest',"vendor", item]
         }));
     });
@@ -57,11 +61,9 @@ const generatorHtmlWebpackPlugins = () => {
 module.exports = {
     mode,
     entry: getEntries(),
-    // entry: path.resolve(__dirname, "../src/pages/P1/index.js"),
-    // entry: "./src/index.js",
     output: {
         publicPath: devMode ? "" : "/",
-        filename: devMode ? "[name].js" : "[name]/static/js/[name].[chunkhash].js",
+        filename:devMode ? "[name].js" : "[name]/static/js/[name].[chunkhash].js",
         path: path.resolve(__dirname, "../dist")
     },
     module: {
@@ -130,6 +132,7 @@ module.exports = {
             filename: devMode ? "[name].css" : "[name].[hash].css",
             // chunkFilename: devMode ? "[id].css" : "[id].[hash].css",
             moduleFilename:(obj) =>{
+                console.log('MiniCssExtractPlugin.moduleFilename',obj.name)
                 if(devMode){
                     return `${obj.id}.css`
                 } 

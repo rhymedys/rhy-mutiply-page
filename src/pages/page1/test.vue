@@ -5,6 +5,12 @@
     </div>
 </template>
 
+<script>
+export default {
+    name:'test',
+    app:'page1'
+}
+</script>
 
 <style scoped>
 img{

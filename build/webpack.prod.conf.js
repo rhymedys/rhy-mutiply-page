@@ -8,7 +8,6 @@ module.exports = merge(baseConfig, {
                     name: "vendor",
                     test: /[\\/]node_modules[\\/](vue|vuex|)/,
                     chunks: "initial",
-                    minChunks:2
                 }
             }
         }
