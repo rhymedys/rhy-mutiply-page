@@ -92,8 +92,8 @@ module.exports = {
                                 mapFileDir = mapFileDir.replace(/\\index.*/, '')
 
                                 console.log(file)
-                                console.log(path.join(__dirname, 'dist', `${mapFileDir}`, 'static', 'css'))
-                                return path.join(__dirname, '../', 'dist', `${mapFileDir}`, 'static', 'css', '/')
+                                console.log(path.join(__dirname, 'dist', `${mapFileDir.replace(/\..*?$/,'')}`, 'static', 'css'))
+                                return path.join(__dirname, '../', 'dist', `${mapFileDir.replace(/\..*?$/,'')}`, 'static', 'css', '/')
                             }
                         }
                     },
