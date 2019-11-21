@@ -52,11 +52,52 @@ const generatorHtmlWebpackPlugins = () => {
 
         arr.push(new HtmlWebpackPlugin({
             template: templatePath,
-            filename: `${distSrc}${devMode?'':'.html'}`,
+            filename: `${distSrc}${devMode ? '' : '.html'}`,
             chunks: ['manifest', "vendor", item]
         }));
     });
     return arr;
+}
+
+const getJsModuleRules = () => {
+    const res = {
+        test: /\.js$/,
+        use: [
+            'babel-loader',
+
+        ]
+    }
+
+    if (!devMode) {
+        res.use.unshift({
+            loader: 'rhy-chunkfilename-loader',
+            options: {
+                appPageRoot: path.join('src', 'pages')
+            }
+        })
+    }
+
+    return res
+}
+
+const getVueModuleRules = ()=>{
+    const res =             {
+        test: /\.vue$/,
+        use: [
+            "vue-loader",
+        ]
+    }
+
+    if (!devMode) {
+        res.use.unshift({
+            loader: 'rhy-chunkfilename-loader',
+            options: {
+                appPageRoot: path.join('src', 'pages')
+            }
+        })
+    }
+
+    return res
 }
 
 module.exports = {
@@ -66,36 +107,12 @@ module.exports = {
         publicPath: devMode ? "" : "/",
         filename: devMode ? "[name].js" : "[name]/static/js/[name].[chunkhash].js",
         path: path.resolve(__dirname, "../dist"),
-        chunkFilename: devMode ? '[name].[chunkhash].js' : undefined
+        chunkFilename: !devMode ? '[name].[chunkhash].js' : undefined
     },
     module: {
-        rules: [{
-                test: /\.js$/,
-                use: [
-                    devMode ? "" : {
-                        loader: 'rhy-chunkfilename-loader',
-                        options: {
-                            appPageRoot:path.join('src','pages')
-                        }
-                    },
-                    'babel-loader',
-
-                ]
-            },
-            {
-                test: /\.vue$/,
-                use: [
-                    devMode ? "" : {
-                        loader: 'rhy-chunkfilename-loader',
-                        options: {
-                            appPageRoot:path.join('src','pages')
-                        }
-                    },
-                    "vue-loader",
-
-
-                ]
-            },
+        rules: [
+            getJsModuleRules(),
+            getVueModuleRules(),
             // {
             //     test: /\.css$/,
             //     use: ["style-loader", "css-loader"]
@@ -113,8 +130,8 @@ module.exports = {
                                 mapFileDir = mapFileDir.replace(/\\index.*/, '')
 
                                 console.log(file)
-                                console.log(path.join(__dirname, 'dist', `${mapFileDir.replace(/\..*?$/,'')}`, 'static', 'css'))
-                                return path.join(__dirname, '../', 'dist', `${mapFileDir.replace(/\..*?$/,'')}`, 'static', 'css', '/')
+                                console.log(path.join(__dirname, 'dist', `${mapFileDir.replace(/\..*?$/, '')}`, 'static', 'css'))
+                                return path.join(__dirname, '../', 'dist', `${mapFileDir.replace(/\..*?$/, '')}`, 'static', 'css', '/')
                             }
                         }
                     },

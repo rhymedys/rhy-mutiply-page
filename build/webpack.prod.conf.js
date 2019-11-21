@@ -31,7 +31,7 @@ module.exports = merge(baseConfig, {
             cacheGroups: {
                 vendors: {
                     name: "vendor",
-                    filename: 'commom/vue-vendor.[chunkhash].js',
+                    filename: 'common/vue-vendor.[chunkhash].js',
                     test: /[\\/]node_modules[\\/](vue|vuex|axios|)/,
                     chunks: "initial",
                     reuseExistingChunk: true
