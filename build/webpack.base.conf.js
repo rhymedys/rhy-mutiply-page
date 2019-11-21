@@ -64,7 +64,8 @@ module.exports = {
     output: {
         publicPath: devMode ? "" : "/",
         filename:devMode ? "[name].js" : "[name]/static/js/[name].[chunkhash].js",
-        path: path.resolve(__dirname, "../dist")
+        path: path.resolve(__dirname, "../dist"),
+        chunkFilename:'[name].[chunkhash].js'
     },
     module: {
         rules: [{
