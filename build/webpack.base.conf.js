@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TransfromChunkNameLoader = require('./loader/TransfromChunkNameLoader')
 
 
 const mode = process.env.NODE_ENV;
@@ -45,14 +46,14 @@ const generatorHtmlWebpackPlugins = () => {
             templatePath = publicTemplatePath;
         }
 
-        let distSrc = !devMode?`${item}/`:''
+        let distSrc = !devMode ? `${item}/` : ''
 
         distSrc += `${item}`
 
         arr.push(new HtmlWebpackPlugin({
             template: templatePath,
             filename: `${distSrc}${devMode?'':'.html'}`,
-            chunks: ['manifest',"vendor", item]
+            chunks: ['manifest', "vendor", item]
         }));
     });
     return arr;
@@ -63,25 +64,44 @@ module.exports = {
     entry: getEntries(),
     output: {
         publicPath: devMode ? "" : "/",
-        filename:devMode ? "[name].js" : "[name]/static/js/[name].[chunkhash].js",
+        filename: devMode ? "[name].js" : "[name]/static/js/[name].[chunkhash].js",
         path: path.resolve(__dirname, "../dist"),
-        chunkFilename:'[name].[chunkhash].js'
+        chunkFilename: devMode ? '[name].[chunkhash].js' : undefined
     },
     module: {
         rules: [{
                 test: /\.js$/,
-                use: "babel-loader"
+                use: [
+                    devMode ? "" : {
+                        loader: 'rhy-chunkfilename-loader',
+                        options: {
+                            appPageRoot:path.join('src','pages')
+                        }
+                    },
+                    'babel-loader',
+
+                ]
             },
             {
                 test: /\.vue$/,
-                use: "vue-loader"
+                use: [
+                    devMode ? "" : {
+                        loader: 'rhy-chunkfilename-loader',
+                        options: {
+                            appPageRoot:path.join('src','pages')
+                        }
+                    },
+                    "vue-loader",
+
+
+                ]
             },
             // {
             //     test: /\.css$/,
             //     use: ["style-loader", "css-loader"]
             // },
             {
-                test: /\.(sc|sa|c)ss$/,
+                test: /\.(le|sc|sa|c)ss$/,
                 use: [
                     devMode ? "style-loader" : {
                         loader: MiniCssExtractPlugin.loader,
@@ -99,7 +119,8 @@ module.exports = {
                         }
                     },
                     "css-loader",
-                    "sass-loader"
+                    "sass-loader",
+                    "less-loader",
                 ]
             },
             {
@@ -132,11 +153,11 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: devMode ? "[name].css" : "[name].[hash].css",
             // chunkFilename: devMode ? "[id].css" : "[id].[hash].css",
-            moduleFilename:(obj) =>{
-                console.log('MiniCssExtractPlugin.moduleFilename',obj.name)
-                if(devMode){
+            moduleFilename: (obj) => {
+                console.log('MiniCssExtractPlugin.moduleFilename', obj.name)
+                if (devMode) {
                     return `${obj.id}.css`
-                } 
+                }
                 return `./${obj.name}/static/css/${obj.id}.${obj.hash}.css`
             }
         }),

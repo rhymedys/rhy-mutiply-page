@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 Vue.use(Router);
-const Test = () => import(/* webpackChunkName: "./page1/components/_PayResult" */ "./test");
+const Test = () => import(/* webpackChunkName: "test" */ "./test");
 export default new Router({
     routes: [
         {
@@ -10,10 +10,10 @@ export default new Router({
                 name: "test"
             },
         },
-        {
-            path: "/test",
-            component: Test,
-            name: "test"
-        }
+        // {
+        //     path: "/test",
+        //     component: Test,
+        //     name: "test"
+        // }
     ]
 });
