@@ -88,14 +88,6 @@ const getVueModuleRules = ()=>{
         ]
     }
 
-    if (!devMode) {
-        res.use.unshift({
-            loader: 'rhy-chunkfilename-loader',
-            options: {
-                appPageRoot: path.join('src', 'pages')
-            }
-        })
-    }
 
     return res
 }
