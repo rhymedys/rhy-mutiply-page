@@ -18,6 +18,7 @@ src                     // 程序源码结构
 |---- request           // model层 定义ts请求实体对象（可选）
 |---- reponse           // model层 定义ts响应实体对象（可选）
 |--- router             // 路由模块（可选）
+|--- constants          // 常量维护
 |-- Page2               // 单独页面工程 Page2
 |--  ...
 |--  ...
