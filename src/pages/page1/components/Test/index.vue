@@ -6,9 +6,15 @@
 </template>
 
 <script>
+import { METHODS } from 'http';
 export default {
     name:'test',
-    app:'page1'
+    app:'page1',
+    methods:{
+        mapObjectA(obj){
+            return 1
+        }
+    }
 }
 </script>
 

@@ -26,6 +26,56 @@ src                     // 程序源码结构
 test                    // 单元测试源码结构
 ```
 
+
+## 必须规则项
+
+1.  每个页面异步引入组件的时候需要加上 webpackChunkName。如：
+
+```javascript
+// Page1/router.vue
+const Test = () => import(/* webpackChunkName: "Test" */ "./components/Test");
+```
+
+2.  每个方法，对象应有一个适当的说明与备注。如：
+
+```javascript
+// 格式化ObjectA 
+或
+/**
+ * 
+ * @param {String} obj 对象A 
+ * @returns number 返回
+ */
+function normalizeObjectA(objA){
+
+}
+
+// 已支付状态
+const hadPayed = '1' 
+
+```
+
+3.  每个入口页面都必须在开头写明query参数与param参数说明。如：
+
+```javascript
+// src\pages\Page1\index.js
+
+/*
+ * 
+ * @Author: Rhymedys/Rhymedys@gmail.com 
+ * @Date: 2019-11-22 14:37:18 
+ * @Last Modified by: Rhymedys
+ * @Last Modified time: 2019-11-22 14:40:30
+ * 
+ * query参数：
+ *      doctorOpenId:医生Id(必须)
+ *      teptId:科室id
+ * param参数：
+ *      getConsultType:咨询类型(必须) "1"：图文 ,"2":电话
+ */
+
+```
+
 ## 编码规范
 
 ### 命名
@@ -181,11 +231,3 @@ function mapObjectA(){
 ```
 
 
-## 注意事项
-
-1.  每个页面异步引入组件的时候需要加上 webpackChunkName。如：
-
-```javascript
-// Page1/router.vue
-const Test = () => import(/* webpackChunkName: "Test" */ "./components/Test");
-```
