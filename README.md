@@ -1,6 +1,18 @@
 # rhy-mutiply-page
 Vue 多页应用工程
 
+
+## 架构图
+
+### 源码src
+
+![src](./doc/src.png)
+
+### 打包后dist
+
+![dist](./doc/dist.png)
+
+
 ## 目录结构
 ```
 src                     // 程序源码结构 
