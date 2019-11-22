@@ -134,7 +134,7 @@ props: {
 
 4.  在父子组件事件分发的的时候时候，其事件、模板和 JSX 中应该始终使用 kebab-case。如：
 
-``` javascript
+``` html
 // 子组件分发事件
 
 <template>
