@@ -3,7 +3,7 @@
 
 </template>
 <script>
-const asyncComponent = ()=>import(/* webpackChunkName: "asyncComponent" */ './asyncComponent')
+const asyncComponent = ()=>import(/* webpackChunkName: "AsyncComponent" */ './components/AsyncComponent')
 export default {
     components:{
         asyncComponent

@@ -17,6 +17,7 @@ src
 |--- models             // model层 定义ts实体对象（可选）
 |---- request           // model层 定义ts请求实体对象（可选）
 |---- reponse           // model层 定义ts响应实体对象（可选）
+|--- router             // 路由模块（可选）
 |-- Page2               // 单独页面工程 Page2
 |--  ...
 |--  ...
@@ -25,7 +26,7 @@ src
 
 ## 编码规范
 
-### 命名规范
+### 命名
 1.  页面、组件使用包结构的模式,包名始终是单词大写开头,入口文件始终使用index全小写的命名。
 如：
 
@@ -96,6 +97,7 @@ props: {
 
 
 5.  计算属性compute的命名应遵循computeAaBb的命名规范。如：
+
 ``` javascript
 export default {
     compute:{
@@ -126,6 +128,62 @@ export default {
 
 ```
 
+7. 状态管理的action统一命名为dispatchAaBb,mutation统一命名为commitAaBb,如：
 
-## 注意
+``` javascript
 
+// action
+const action  ={
+    dispacthActionDemoA(state,value){
+
+    }
+}
+
+// mutation
+const mutation = {
+    commitMutationDemoB(state,value){
+
+    }
+}
+```
+
+8. 其余命名。如：
+
+```javascript
+
+// 格式化ObjectA
+function normalizeObjectA(){
+
+}
+
+// 唤起EventA
+function invokeEventA(){
+
+}
+
+// 请求NetworkA
+function requestNetworkA(){
+
+}
+
+// 获取ObjectA
+function getObjectA(){
+
+}
+
+// 映射ObjectA
+function mapObjectA(){
+
+}
+
+```
+
+
+## 注意事项
+
+1.  每个页面异步引入组件的时候需要加上 webpackChunkName。如：
+
+```javascript
+// Page1/router.vue
+const Test = () => import(/* webpackChunkName: "Test" */ "./components/Test");
+```
