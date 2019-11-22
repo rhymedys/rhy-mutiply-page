@@ -139,16 +139,17 @@ module.exports = {
                     options: {
                         limit: 8192,
                         name(file) {
-                            let mapFileDir = file.replace(/.*pages\\/, '')
+                            let mapFileDir = file.replace(/.*pages(\\|\/)/, '')
                             // console.log('file-loader', mapFileDir.match(/page.*?\\assets/))
 
-                            mapFileDir = mapFileDir.replace(/\\assets.*/, '')
+                            mapFileDir = mapFileDir.replace(/(\\|\/)assets.*/, '')
 
                             // console.log(mapFileDir)
 
                             if (devMode) {
                                 return "[name].[hash:8].[ext]"
                             } else {
+                                console.log('file-loader',mapFileDir)
                                 return `${mapFileDir}/static/images/[name].[hash:8].[ext]`
                             }
                         },
