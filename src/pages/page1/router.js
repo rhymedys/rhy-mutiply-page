@@ -10,10 +10,10 @@ export default new Router({
                 name: "test"
             },
         },
-        // {
-        //     path: "/test",
-        //     component: Test,
-        //     name: "test"
-        // }
+        {
+            path: "/test",
+            component: Test,
+            name: "test"
+        }
     ]
 });
