@@ -3,6 +3,8 @@ const baseConfig = require("./webpack.base.conf.js");
 const CompressionAssetByBrotliWebpackPlugin = require('compression-asset-by-brotli-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
+
+
 const baseEncodeConfig = {
     test: /\.(js|css|svg)$/,
     threshold: 3000,
@@ -22,6 +24,7 @@ baseConfig
             asset: '[path].br[query]',
             ...baseEncodeConfig
         }),
+
     )
 
 
@@ -32,10 +35,10 @@ module.exports = merge(baseConfig, {
                 vendors: {
                     name: "vendor",
                     filename: 'common/vue-vendor.[chunkhash].js',
-                    test: /[\\/]node_modules[\\/](vue|vuex|axios|)/,
+                    test: /[\\/]node_modules[\\/](vue|vuex|axios)/,
                     chunks: "initial",
                     reuseExistingChunk: true
-                },
+                }
             }
         }
     }

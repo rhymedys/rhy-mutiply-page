@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const TransfromChunkNameLoader = require('./loader/TransfromChunkNameLoader')
 
 
 const mode = process.env.NODE_ENV;
@@ -33,6 +32,7 @@ const getEntries = () => {
  */
 const generatorHtmlWebpackPlugins = () => {
     const arr = [];
+    const fileNames = []
     let result = fs.readdirSync(pagesDirPath);
     result.forEach(item => {
         //判断页面目录下有无自己的index.html
@@ -50,12 +50,31 @@ const generatorHtmlWebpackPlugins = () => {
 
         distSrc += `${item}`
 
-        arr.push(new HtmlWebpackPlugin({
-            template: templatePath,
-            filename: `${distSrc}${devMode ? '' : '.html'}`,
-            chunks: ['manifest', "vendor", item]
-        }));
+        const filename =  `${distSrc}${devMode ? '' : '.html'}`
+
+        fileNames.push(
+            filename
+        )
+
+        arr.push(
+            new HtmlWebpackPlugin({
+                template: templatePath,
+                filename,
+                chunks: ['manifest', "vendor", item]
+            })
+        );
+
+
     });
+
+
+    // if(!devMode){
+    //     arr.push(
+    //         new PreloadWebpackPlugin({
+    //             excludeHtmlNames:fileNames
+    //         })
+    //     )
+    // }
     return arr;
 }
 
@@ -80,8 +99,8 @@ const getJsModuleRules = () => {
     return res
 }
 
-const getVueModuleRules = ()=>{
-    const res =             {
+const getVueModuleRules = () => {
+    const res = {
         test: /\.vue$/,
         use: [
             "vue-loader",
@@ -105,10 +124,6 @@ module.exports = {
         rules: [
             getJsModuleRules(),
             getVueModuleRules(),
-            // {
-            //     test: /\.css$/,
-            //     use: ["style-loader", "css-loader"]
-            // },
             {
                 test: /\.(le|sc|sa|c)ss$/,
                 use: [
@@ -154,6 +169,16 @@ module.exports = {
                         },
                     }
                 }]
+            },
+            {
+              test: /\.(js|vue)$/,
+              loader: 'eslint-loader',
+              enforce: 'pre',
+              include: [path.resolve('src'), path.resolve('test')],
+              options: {
+                formatter: require('eslint-friendly-formatter'),
+                emitWarning: true
+              }
             }
         ]
     },
@@ -171,11 +196,11 @@ module.exports = {
             }
         }),
         // new CleanWebpackPlugin(path.resolve(__dirname, "../dist")),
-        ...generatorHtmlWebpackPlugins(),
         new CopyWebpackPlugin([{
             from: path.resolve(__dirname, "../src/public/static"),
             to: path.resolve(__dirname, "../dist/static")
-        }])
+        }]),
+        ...generatorHtmlWebpackPlugins(),
         // new HtmlWebpackPlugin()
     ],
     resolve: {

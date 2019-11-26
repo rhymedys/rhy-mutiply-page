@@ -1,13 +1,29 @@
 <template>
-    <div>page2    <async-component>1</async-component></div>
-
+  <div>
+    page2
+    <AsyncComponent>1</AsyncComponent>
+    <Button>test</Button>
+    <Checkbox v-model="checked">复选框</Checkbox>
+  </div>
 </template>
 <script>
-const asyncComponent = ()=>import(/* webpackChunkName: "AsyncComponent" */ './components/AsyncComponent')
+import { Button, Checkbox } from 'vant'
+
+const AsyncComponent = () =>
+  import(
+    /* webpackChunkName: "AsyncComponent" */
+    './components/AsyncComponent'
+  )
 export default {
-    components:{
-        asyncComponent
+  data () {
+    return {
+      checked: false
     }
+  },
+  components: {
+    AsyncComponent,
+    Button,
+    Checkbox
+  }
 }
 </script>
-

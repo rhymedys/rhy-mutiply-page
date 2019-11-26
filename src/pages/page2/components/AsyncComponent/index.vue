@@ -4,10 +4,9 @@
 
 <script>
 export default {
-    name:'asyncComponent'
+  name: 'asyncComponent'
 }
 </script>
-
 
 <style scoped>
 .asyncComponent{

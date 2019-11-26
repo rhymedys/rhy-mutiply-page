@@ -6,20 +6,19 @@
 </template>
 
 <script>
-import { METHODS } from 'http';
 export default {
-    name:'test',
-    app:'page1',
-    methods:{
-        /**
-         * 
-         * @param {String} obj 对象A 
+  name: 'test',
+  app: 'page1',
+  methods: {
+    /**
+         *
+         * @param {String} obj 对象A
          * @returns number 返回
          */
-        mapObjectA(obj){
-            return 1
-        }
+    mapObjectA (obj) {
+      return 1
     }
+  }
 }
 </script>
 
@@ -28,5 +27,3 @@ img{
     background: white;
 }
 </style>
-
-
