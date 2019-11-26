@@ -1,13 +1,13 @@
 <template>
-    <div>page1
-        <img src="../../assets/wave.jpg"/>
-
-    </div>
+  <div>
+    page1
+    <img src="../../assets/wave.jpg">
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'test',
+  name: 'Test',
   app: 'page1',
   methods: {
     /**

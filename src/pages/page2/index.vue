@@ -3,7 +3,9 @@
     page2
     <AsyncComponent>1</AsyncComponent>
     <Button>test</Button>
-    <Checkbox v-model="checked">复选框</Checkbox>
+    <Checkbox v-model="checked">
+      复选框
+    </Checkbox>
   </div>
 </template>
 <script>
@@ -15,15 +17,15 @@ const AsyncComponent = () =>
     './components/AsyncComponent'
   )
 export default {
-  data () {
-    return {
-      checked: false
-    }
-  },
   components: {
     AsyncComponent,
     Button,
     Checkbox
+  },
+  data () {
+    return {
+      checked: false
+    }
   }
 }
 </script>

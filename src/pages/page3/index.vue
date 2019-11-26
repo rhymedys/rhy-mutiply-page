@@ -1,5 +1,5 @@
 <template>
-    <div>page3</div>
+  <div>page3</div>
 </template>
 <script>
 export default {
