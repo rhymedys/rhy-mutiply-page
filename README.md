@@ -12,10 +12,21 @@ Vue 多页应用工程
 
 ![dist](./doc/dist.png)
 
+## 执行命令
+``` node
+// 构建所有页面
+npm run build
+
+// 构建Page1,Page2页面
+npm run build -Page1 -Page2
+
+// 检查编码风格
+npm run lint
+```
 
 ## 目录结构
 ```
-src                     // 程序源码结构 
+src                     // 程序源码结构
 |- pages
 |-- Page1               // 单独页面工程 Page1
 |--- components         // Page1 页面的组件
@@ -57,11 +68,11 @@ const Test = () => import(/* webpackChunkName: "Test" */ "./components/Test");
 2.  每个方法，对象应有一个适当的说明与备注。如：
 
 ```javascript
-// 格式化ObjectA 
+// 格式化ObjectA
 或
 /**
- * 
- * @param {String} obj 对象A 
+ *
+ * @param {String} obj 对象A
  * @returns number 返回
  */
 function normalizeObjectA(objA){
@@ -69,7 +80,7 @@ function normalizeObjectA(objA){
 }
 
 // 已支付状态
-const hadPayed = '1' 
+const hadPayed = '1'
 
 ```
 
@@ -79,12 +90,12 @@ const hadPayed = '1'
 // src\pages\Page1\index.js
 
 /*
- * 
- * @Author: Rhymedys/Rhymedys@gmail.com 
- * @Date: 2019-11-22 14:37:18 
+ *
+ * @Author: Rhymedys/Rhymedys@gmail.com
+ * @Date: 2019-11-22 14:37:18
  * @Last Modified by: Rhymedys
  * @Last Modified time: 2019-11-22 14:40:30
- * 
+ *
  * query参数：
  *      doctorOpenId:医生Id(必须)
  *      teptId:科室id

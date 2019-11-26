@@ -6110,10 +6110,10 @@ retry@^0.12.0:
   resolved "https://registry.yarnpkg.com/retry/-/retry-0.12.0.tgz#1b42a6266a21f07421d1b0b54b7dc167b01c013b"
   integrity sha1-G0KmJmoh8HQh0bC1S33BZ7AcATs=
 
-rhy-chunkfilename-loader@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/rhy-chunkfilename-loader/-/rhy-chunkfilename-loader-0.1.0.tgz#063e177a20279b8f3081bfe7258fdb52f5ba0ef2"
-  integrity sha512-DA2ByGVdNGbQxqUZRk/Lc3/ng2s4FAieh4LSv86mQhtV6i2gtxWhCZ73XcSDcqgGkX4Wtr19V/QeumW6KycBOg==
+rhy-chunkfilename-loader@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/rhy-chunkfilename-loader/-/rhy-chunkfilename-loader-0.1.1.tgz#86cee98a102b731e4b78b4ebed28ad30557a4de6"
+  integrity sha512-pt2hW97DKOfEVoXf76V/3S/lGgySZNFDiXzD+xU5MYpB0U83ItlR8x6QpiV6IdPIgsDxv+p424rLKz3OLw7Zrg==
 
 rimraf@2, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@^2.6.3:
   version "2.7.1"
