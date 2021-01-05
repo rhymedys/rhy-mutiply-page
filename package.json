@@ -18,7 +18,7 @@
 	"author": "rhymedys",
 	"dependencies": {
 		"@babel/runtime": "^7.3.1",
-		"axios": "^0.19.0",
+		"axios": "^0.21.1",
 		"js-md5": "^0.7.3",
 		"mint-ui": "^2.2.13",
 		"vant": "^2.2.14",
